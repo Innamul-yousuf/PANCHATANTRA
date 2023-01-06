@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/json2/20130526/json2.min.js"></script>
+<script>
+$(document).ready(function () {
+	$("#b1").click(function (event) {
+        event.preventDefault();
+        var formData = {
+            'student_id': $('input[name=student_id]').val(), 
+            'course_id': $('input[name=course_id]').val(),
+             'fees_paid': $('input[name=fees_paid]').val(),
+             'student_CJD': $('input[name=student_CJD]').val(),
+             'student_CED': $('input[name=student_CED]').val(),
+             'student_CAttendance': $('input[name=student_CAttendance]').val(),
+             'student_CGrade': $('input[name=student_CGrade]').val(),      
+        };
+        console.log(formData);
+        $.ajax({
+            'url': "http://localhost:2020/MNCProjectWeb/rest/studentCourse/insertValue",
+            'type': 'post',
+            'dataType': 'json',
+            'processData': false,
+            'data':JSON.stringify(formData),
+            'contentType': "application/json",
+            'success': function(d) {
+            	console.log("success...")
+            },
+        	'error':function(d){
+        		console.log("failure..."+d)
+        	}
+        });
+    });
+})
+</script>
+<form name="updatedb" id="updatedb" method="POST">
+student_id: <input type="text" id="student_id"name="student_id"  value="123123"  /> <br/>
+course_id: <input type="text" id="course_id" name="course_id" value="5555" />
+fees_paid: <input type="text" id="fees_paid" name="fees_paid" value="30" />
+student_CJD: <input type="date" id="student_CJD" name="student_CJD"    /> <br/>
+student_CED: <input type="date" id="student_CED"  name="student_CED"  /> <br/>
+student_CAttendance: <input type="text" id="student_CAttendance" name="student_CAttendance"  value="5"  /> <br/>
+student_CGrade: <input type="text" id=student_CGrade  name="student_CGrade" value="25000"  /> <br/>
+<input type="submit" id="b1"  value="click">
+</form>	
+</body>
+</html>

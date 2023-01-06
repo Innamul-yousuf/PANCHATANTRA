@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>Menu Bar</title>
+</head>
+
+
+<style>
+*{
+margin:0px;
+padding:0px;
+}
+#container ul
+{
+list-style:none;
+}
+#container ul li
+{
+background-color:blue;
+width:180px;
+border:1px solid white;
+height:50px;
+line-height:50px;
+text-align:center;
+float:left;
+color:whitesmoke;
+font-size:20px;
+position:relative;
+}
+#container ul li:hover{
+background-color:red
+}
+#container ul ul{ display:none;
+}
+#container ul li:hover>ul{
+display:block;
+}
+#container ul ulul{
+margin-left:180px; top:0px; position:absolute;
+}
+</style>
+</head>
+<body>
+<div id="container">
+<ul>
+<li>Home
+<li>About us.
+<li>Departments
+<ul>
+<li>Arts
+<li>Science
+<ul>
+<li>Biology
+<li>Botony
+<li>Bio-Technology
+<li>Chemistry
+<li>Computer Science
+<li>Maths
+</ul>
+</li>
+<li>Commerce
+<ul>
+<li>B.com General
+<li>B.com Corporateship
+</ul>
+</ul>
+</li>
+<li>Examination
+<li>Contact us
+</ul>
+</div>
+</body>
+</html> 

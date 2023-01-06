@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/json2/20130526/json2.min.js"></script>
+<script>
+$(document).ready(function () {
+	$("#b1").click(function (event) {
+        event.preventDefault();
+        var formData = {
+            'student_id': $('input[name=student_id]').val(), 
+            'course_id': $('input[name=course_id]').val(),
+             'cod_count': $('input[name=cod_count]').val(),
+             'qod_count': $('input[name=qod_count]').val(),
+             'tod_count': $('input[name=tod_count]').val(),
+             'low_count': $('input[name=low_count]').val(),
+             'vow_count': $('input[name=vow_count]').val(),      
+        };
+        console.log(formData);
+        $.ajax({
+            'url': "http://localhost:2020/MNCProjectWeb/rest/pancha/insertValue",
+            'type': 'post',
+            'dataType': 'json',
+            'processData': false,
+            'data':JSON.stringify(formData),
+            'contentType': "application/json",
+            'success': function(d) {
+            	console.log("success...")
+            },
+        	'error':function(d){
+        		console.log("failure..."+d)
+        	}
+        });
+    });
+})
+</script>
+<form name="updatedb" id="updatedb" method="POST">
+student_id: <input type="text" id="student_id"name="student_id"  value="123123"  /> <br/>
+course_id: <input type="text" id="course_id" name="course_id" value="5555" />
+cod_count: <input type="text" id="cod_count" name="cod_count" value="30" />
+qod_count: <input type="text" id="qod_count" name="qod_count"    /> <br/>
+tod_count: <input type="text" id="tod_count"  name="tod_count"  /> <br/>
+low_count: <input type="text" id="low_count" name="low_count"  value="5"  /> <br/>
+vow_count: <input type="text" id=vow_count  name="vow_count" value="25000"  /> <br/>
+<input type="submit" id="b1"  value="click">
+</form>	
+</body>
+</html>

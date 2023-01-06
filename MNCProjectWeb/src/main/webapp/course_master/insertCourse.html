@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/json2/20130526/json2.min.js"></script>
+<script>
+$(document).ready(function () {
+	$("#b1").click(function (event) {
+        event.preventDefault();
+        var formData = {
+            'course_id': $('input[name=course_id]').val(), 
+            'course_name': $('input[name=course_name]').val(),
+             'duration_in_hrs': $('input[name=duration_in_hrs]').val(),
+             'course_level': $('input[name=course_level]').val(),
+             'course_fees': $('input[name=course_fees]').val(),
+              };
+        console.log(formData);
+        $.ajax({
+            'url': "http://localhost:2020/MNCProjectWeb/rest/course/insertValue",
+            'type': 'post',
+            'dataType': 'json',
+            'processData': false,
+            'data':JSON.stringify(formData),
+            'contentType': "application/json",
+            'success': function(d) {
+            	console.log("success...")
+            },
+        	'error':function(d){
+        		console.log("failure..."+d)
+        	}
+        });
+    });
+})
+</script>
+<form name="updatedb" id="updatedb" method="POST">
+course_id: <input type="text" id="course_id"name="course_id"  value="424242"  /> <br/>
+course_name: <input type="text" id="course_name" name="course_name" value="Spring" />
+duration_in_hrs: <input type="text" id="duration_in_hrs" name="duration_in_hrs" value="30" />
+course_level: <input type="text" id="course_level" name="course_level"  value="5"  /> <br/>
+course_fees: <input type="text" id="course_fees"  name="course_fees" value="25000"  /> <br/>
+<input type="submit" id="b1"  value="click">
+</form>
+</body>
+</html>

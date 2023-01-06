@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="http://cdnjs.cloudflare.com/ajax/libs/json2/20130526/json2.min.js"></script>
+
+	<script>
+$(document).ready(function () {
+	$("#b1").click(function (event) {
+		event.preventDefault()	
+var sid = document.getElementById("student_id").value;
+var cid = document.getElementById("course_id").value;
+var url="http://localhost:2020/MNCProjectWeb/rest/student/findById/"+sid+"/"+cid
+//alert(url)
+
+        $.ajax(url,
+        		{
+        		    dataType: 'json', // type of response data
+        		    timeout: 500,     // timeout milliseconds
+        		    type:'get',
+        		    success: function (data,status,xhr) {  
+        		    	  //$('p').append(data.student_id + ' ' + data.course_id + ' '+ data.cod_count+ ' '+ data.qod_count+ ' '+ data.tod_count+ ' '+ data.low_count+ ' '+ data.vow_count);
+        		          let output = "<tr><td>" + data.student_id + "</td><td>" + data.course_id + "</td><td>"+ data .cod_count + "</td><td>" + data.qod_count + "</td><td>" + data.tod_count + "</td><td>"+ data.low_count+ "</td><td>"+ data.vow_count + "</td><td></tr>";
+        		          $("#output").html(output);
+        		          $("#tbstock").show();
+        		      },
+        		      error: function (jqXhr, textStatus, errorMessage) { // error callback
+        		      	alert("failure....")
+        		          $('p').append('Error: ' + errorMessage);
+        		      }
+        		  });
+        		  });
+        		  });
+	
+        		  </script>
+	<p></p>
+	<form method="post">
+		<input type="text" name="StudentID" id="student_id" value="123123">
+		<input type="text" name="CourseID" id="course_id" value="23444">
+		<input type="submit" value="click" id="b1">
+	</form>
+	<table style="display: none" id="tbstock" class="table table-bordered">
+		<tr class="table-head">
+			<th>Student id</th>
+			<th>Course id</th>
+			<th>COD</th>
+			<th>QOD</th>
+			<th>TOD</th>
+			<th>LOW</th>
+			<th>VOW</th>
+		</tr>
+		<tbody id="output">
+	</table>
+</body>
+</html>

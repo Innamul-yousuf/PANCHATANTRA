@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="http://cdnjs.cloudflare.com/ajax/libs/json2/20130526/json2.min.js"></script>
+
+	<script>
+$(document).ready(function () {
+	$("#b1").click(function (event) {
+		event.preventDefault()	
+
+var url="http://localhost:2020/MNCProjectWeb/rest/pancha/findAll"
+//alert(url)
+
+        $.ajax(url,
+        		{
+        		    dataType: 'json', // type of response data
+        		    timeout: 500,     // timeout milliseconds
+        		    type:'get',
+        		    success: function (data,status,xhr) {  
+        		    
+        		    	     let output = data.map(i => "<tr><td>" + i.student_id + "</td><td>" + i.course_id +"</td><td>" + i.cod_count+"</td><td>" + i.qod_count+"</td><td>" + i.tod_count+"</td><td>" +i.low_count + "</td><td>" + i.vow_count  +"</td><td></tr>");
+            		    	  $("#output").html(output);
+            		         
+            		    	  $("#tbstock").show();
+            		       
+            		         
+        		    	  
+        		      },
+        		    
+        		      error: function (jqXhr, textStatus, errorMessage) { // error callback
+        		      	alert("failure....")
+        		          $('p').append('Error: ' + errorMessage);
+        		      }
+        		  });
+        		  });
+        		  });
+	
+        		  </script>
+	<p></p>
+	<form method="post">
+		<input type="submit" value="Get All Course" id="b1">
+	</form>
+	<table style="display: none" id="tbstock" class="table table-bordered">
+		<tr class="table-head">
+			<th>student_id</th>
+			<th>Course_id</th>
+			<th>COD</th>
+			<th>QOD</th>
+			<th>TOD</th>
+			<th>LOW</th>
+			<th>VOW</th>
+		
+		</tr>
+		<tbody id="output">
+	</table>
+</body>
+</html>

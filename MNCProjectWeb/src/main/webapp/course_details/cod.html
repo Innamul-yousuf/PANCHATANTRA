@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="http://cdnjs.cloudflare.com/ajax/libs/json2/20130526/json2.min.js"></script>
+
+	<script>
+$(document).ready(function () {
+	$("#b1").click(function (event) {
+		event.preventDefault()	
+
+var url="http://localhost:2020/MNCProjectWeb/rest/course_count/cod"
+//alert(url)
+<!--
+        $.ajax(url,
+        		{
+        		    dataType: 'json', // type of response data
+        		    timeout: 500,     // timeout milliseconds
+        		    type:'get',
+        		    success: function (data,status,xhr) {  
+        		    
+        		    	     let output = data.map(i => "<tr><td>" + i.student_id + "</td><td>" + i.course_id +"</td><td>" + i.cod_count+"</td><td></tr>");
+            		    	  $("#output").html(output);
+            		         
+            		    	  $("#tbstock").show();
+            		       
+            		         
+        		    	  
+        		      },
+        		    
+        		      error: function (jqXhr, textStatus, errorMessage) { // error callback
+        		      	//alert("failure....")
+        		          $('p').append('Error: ' + errorMessage);
+        		      }
+        		  });
+        		  });
+        		  });
+        		 
+$(document).ready(function () {
+	$("#b2").click(function (event) {
+		event.preventDefault()
+	
+var url2="http://localhost:2020/MNCProjectWeb/rest/codp"
+
+document.location=url2; 
+	});
+}); 
+$(document).ready(function () {
+	$("#b3").click(function (event) {
+		event.preventDefault()
+	var pdf ="Cod_Performance";
+var url2="http://localhost:2020/MNCProjectWeb/rest/emailAdmin/"+pdf;
+alert(url2)
+document.location=url2; 
+	});
+}); 
+    
+        		  </script>
+	<p></p>
+	<form method="post">
+		<input type="submit" value="COD" id="b1">
+		<input type="submit" value="GeneratePdf" id="b2">
+		<input type="submit" value="sendToAdmin" id="b3">
+	</form>
+	<table style="display: none" id="tbstock" class="table table-bordered">
+		<tr class="table-head">
+			<th>student_id</th>
+			<th>Course_id</th>
+			<th>COD</th>
+			
+		</tr>
+		<tbody id="output">
+	</table>
+</body>
+</html>

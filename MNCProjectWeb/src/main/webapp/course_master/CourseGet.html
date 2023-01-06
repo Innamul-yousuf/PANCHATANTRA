@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="http://cdnjs.cloudflare.com/ajax/libs/json2/20130526/json2.min.js"></script>
+
+	<script>
+$(document).ready(function () {
+	$("#b1").click(function (event) {
+		event.preventDefault()	
+var sid = document.getElementById("Course_id").value;
+
+var url="http://localhost:2020/MNCProjectWeb/rest/course/FindById/"+sid
+//alert(url)
+
+        $.ajax(url,
+        		{
+        		    dataType: 'json', // type of response data
+        		    timeout: 500,     // timeout milliseconds
+        		    type:'get',
+        		    success: function (data,status,xhr) {  
+        		    	  //$('p').append(data.student_id + ' ' + data.course_id + ' '+ data.cod_count+ ' '+ data.qod_count+ ' '+ data.tod_count+ ' '+ data.low_count+ ' '+ data.vow_count);
+        		          let output = "<tr><td>" + data.course_id + "</td><td>" + data.course_name + "</td><td>"+ data .duration_in_hrs + "</td><td>" + data.course_level + "</td><td>" + data.course_fees+"</td><td></tr>";
+        		          
+        		          $("#output").html(output);
+        		          $("#tbstock").show();
+        		      },
+        		      error: function (jqXhr, textStatus, errorMessage) { // error callback
+        		      	alert("failure....")
+        		          $('p').append('Error: ' + errorMessage);
+        		      }
+        		  });
+        		  });
+        		  });
+	
+        		  </script>
+	<p></p>
+	<form method="post">
+		<input type="text" name="Course_id" id="Course_id" value="5555">
+		
+		<input type="submit" value="click" id="b1">
+	</form>
+	<table style="display: none" id="tbstock" class="table table-bordered">
+		<tr class="table-head">
+			<th>Course_id</th>
+			<th>Course_name</th>
+			<th>duration_in_hrs</th>
+			<th>course_level</th>
+			<th>course_fees</th>
+			
+		</tr>
+		<tbody id="output">
+	</table>
+</body>
+</html>

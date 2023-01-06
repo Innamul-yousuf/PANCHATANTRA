@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="http://cdnjs.cloudflare.com/ajax/libs/json2/20130526/json2.min.js"></script>
+
+	<script>
+$(document).ready(function () {
+	$("#b1").click(function (event) {
+		event.preventDefault()	
+var sid = document.getElementById("student_id").value;
+
+var url="http://localhost:2020/MNCProjectWeb/rest/student/FindById/"+sid
+//alert(url)
+
+        $.ajax(url,
+        		{
+        		    dataType: 'json', // type of response data
+        		    timeout: 500,     // timeout milliseconds
+        		    type:'get',
+        		    success: function (data,status,xhr) {  
+        		    	  //$('p').append(data.student_id + ' ' + data.course_id + ' '+ data.cod_count+ ' '+ data.qod_count+ ' '+ data.tod_count+ ' '+ data.low_count+ ' '+ data.vow_count);
+        		          let output = "<tr><td>" + data.student_id + "</td><td>" + data.student_name + "</td><td>"+ data .student_pass + "</td><td>" + data.student_whatsappno1 + "</td><td>" + data.student_whatsappno2 + "</td><td>"+ data.student_whatsappno3+ "</td><td>"+ data.student_email1 + "</td><td>"+ data.student_email2+"</td><td>"+ data.student_email3 +"</td><td>"+ data.student_address1 +"</td><td>"+ data.student_address2 +"</td><td>"+ data.student_city +"</td><td>"+ data.student_country +"</td><td>"+ data.student_college +"</td><td></tr>";
+        		          
+        		          $("#output").html(output);
+        		          $("#tbstock").show();
+        		      },
+        		      error: function (jqXhr, textStatus, errorMessage) { // error callback
+        		      	alert("failure....")
+        		          $('p').append('Error: ' + errorMessage);
+        		      }
+        		  });
+        		  });
+        		  });
+	
+        		  </script>
+	<p></p>
+	<form method="post">
+		<input type="text" name="StudentID" id="student_id" value="123123">
+		
+		<input type="submit" value="click" id="b1">
+	</form>
+	<table style="display: none" id="tbstock" class="table table-bordered">
+		<tr class="table-head">
+			<th>Student id</th>
+			<th>student_name</th>
+			<th>student_pass</th>
+			<th>student_whatsappno1</th>
+			<th>student_whatsappno2</th>
+			<th>student_whatsappno3</th>
+			<th>student_email1</th>
+			<th>student_email2</th>
+			<th>student_email3</th>
+			<th>student_address1</th>
+			<th>student_address2</th>
+			<th>student_city</th>
+			<th>student_country</th>
+			<th>student_college</th>
+			<th>student_college_year</th>
+		</tr>
+		<tbody id="output">
+	</table>
+</body>
+</html>

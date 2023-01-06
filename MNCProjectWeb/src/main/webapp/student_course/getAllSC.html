@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="http://cdnjs.cloudflare.com/ajax/libs/json2/20130526/json2.min.js"></script>
+
+	<script>
+$(document).ready(function () {
+	$("#b1").click(function (event) {
+		event.preventDefault()	
+
+var url="http://localhost:2020/MNCProjectWeb/rest/studentCourse/findAll"
+//alert(url)
+
+        $.ajax(url,
+        		{
+        		    dataType: 'json', // type of response data
+        		    timeout: 500,     // timeout milliseconds
+        		    type:'get',
+        		    success: function (data,status,xhr) {  
+        		    
+        		    	     let output = data.map(i => "<tr><td>" + i.student_id + "</td><td>" + i.course_id +"</td><td>" + i.fees_paid+"</td><td>" + i.student_CJD+"</td><td>" + i.student_CED+"</td><td>" +i.student_CAttendance + "</td><td>" + i.student_CGrade + "</td><td>" +"</td><td></tr>");
+            		    	  $("#output").html(output);
+            		         
+            		    	  $("#tbstock").show();
+            		       
+            		         
+        		    	  
+        		      },
+        		    
+        		      error: function (jqXhr, textStatus, errorMessage) { // error callback
+        		      	alert("failure....")
+        		          $('p').append('Error: ' + errorMessage);
+        		      }
+        		  });
+        		  });
+        		  });
+	
+        		  </script>
+	<p></p>
+	<form method="post">
+		<input type="submit" value="Get All Course" id="b1">
+	</form>
+	<table style="display: none" id="tbstock" class="table table-bordered">
+		<tr class="table-head">
+			<th>student_id</th>
+			<th>course_id</th>
+			<th>fees_paid</th>
+			<th>student_CJD</th>
+			<th>student_CED</th>
+			<th>student_CAttendance</th>
+			<th>student_CGrade</th>		
+		</tr>
+		<tbody id="output">
+	</table>
+</body>
+</html>

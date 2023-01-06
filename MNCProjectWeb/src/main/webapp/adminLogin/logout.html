@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="http://cdnjs.cloudflare.com/ajax/libs/json2/20130526/json2.min.js"></script>
+
+	<script>
+
+$(document).ready(function () {
+	$("#b1").click(function (event) {
+		event.preventDefault()
+var url3="http://localhost:2020/MNCProjectWeb/rest/admin/logout";
+		document.location=url3; 
+	});
+
+});
+
+
+
+</script>
+        		  
+	<p></p>
+
+	<form id="adminLogout" method=" post">
+	
+<input type="submit" value="logout" id="b1">
+	</form>
+
+</body>
+</html>

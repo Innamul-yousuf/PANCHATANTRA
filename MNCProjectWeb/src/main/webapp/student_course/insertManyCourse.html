@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/json2/20130526/json2.min.js"></script>
+<script>
+$(document).ready(function () {
+	$("#b1").click(function (event) {
+        event.preventDefault();
+        var formData = {
+            'student_id': $('input[name=student_id]').val(), //for get email
+            'student_name': $('input[name=student_name]').val(),
+             'student_pass': $('input[name=student_pass]').val(),
+             'student_whatsappno1': $('input[name=student_whatsappno1]').val(),
+             'student_whatsappno2': $('input[name=student_whatsappno2]').val(),
+             'student_whatsappno3': $('input[name=student_whatsappno3]').val(),
+             'student_email1': $('input[name=student_email1]').val(),
+             'student_email2': $('input[name=student_email2]').val(),
+             'student_email3': $('input[name=student_email3]').val(),
+             'student_address1': $('input[name=student_address1]').val(),
+             'student_address2': $('input[name=student_address2]').val(),
+             'student_city': $('input[name=student_city]').val(),
+             'student_country': $('input[name=student_country]').val(),
+             'student_college': $('input[name=student_college]').val(),
+             'student_college_year': $('input[name=student_college_year]').val(),
+        };
+        console.log(formData);
+        $.ajax({
+            'url': "http://localhost:2020/MNCProjectWeb/rest/student/InsertMany",
+            'type': 'post',
+            'dataType': 'json',
+            'processData': false,
+            'data':JSON.stringify(formData),
+            'contentType': "application/json",
+            'success': function(d) {
+            	console.log("success...")
+            },
+        	'error':function(d){
+        		console.log("failure..."+d)
+        	}
+        });
+    });
+})
+
+$(document).ready(function () {
+	$("#b2").click(function (event) {
+        event.preventDefault();
+        
+        var formData = {
+            'student_id': $('input[name=student_id]').val(), //for get email
+            'student_name': $('input[name=student_name]').val(),
+             'student_pass': $('input[name=student_pass]').val(),
+             'student_whatsappno1': $('input[name=student_whatsappno1]').val(),
+             'student_whatsappno2': $('input[name=student_whatsappno2]').val(),
+             'student_whatsappno3': $('input[name=student_whatsappno3]').val(),
+             'student_email1': $('input[name=student_email1]').val(),
+             'student_email2': $('input[name=student_email2]').val(),
+             'student_email3': $('input[name=student_email3]').val(),
+             'student_address1': $('input[name=student_address1]').val(),
+             'student_address2': $('input[name=student_address2]').val(),
+             'student_city': $('input[name=student_city]').val(),
+             'student_country': $('input[name=student_country]').val(),
+             'student_college': $('input[name=student_college]').val(),
+             'student_college_year': $('input[name=student_college_year]').val(),
+             
+   	 	
+        };
+        let output = data.map(i => i.student_id  + i.student_name+ i.student_pass+ i.student_whatsappno1 + i.student_whatsappno2 + i.student_whatsappno3 + i.student_email1 + i.student_email2 + i.student_email3 + i.student_address1 + i.student_address2 + i.student_city+ i.student_country+ i.student_college);
+
+        console.log(output);
+        $.ajax({
+            'url': "http://localhost:2020/MNCProjectWeb/rest/student/InsertMany",
+            'type': 'post',
+            'dataType': 'json',
+            'processData': false,
+            'data':JSON.stringify(formData),
+            'contentType': "application/json",
+            'success': function(output) {
+            	
+            	console.log("success...")
+            },
+        	'error':function(d){
+        		console.log("failure..."+d)
+        	}
+        });
+    });
+})
+
+</script>
+<form name="updatedb" id="updatedb" method="POST">
+Student id: <input type="text" id="student_id" value="567567" name="student_id"  /> <br/>
+Student name: <input type="text" id="student_name" name="student_name" value="Innamul" />
+Student pass: <input type="text" id="student_pass" name="student_pass" value="InnuSec" />
+Whatsapp1: <input type="text" id="student_whatsappno1" value="7092353754" name="student_whatsappno1"  /> <br/>
+Whatsapp2: <input type="text" id="student_whatsappno2" value="7092353754" name="student_whatsappno2"  /> <br/>
+Whatsapp3: <input type="text" id="student_whatsappno3" value="7092353754" name="student_whatsappno3"  /> <br/>
+Email1: <input type="text" id="student_email1" name="student_email1" value="Innamulproject@gmail.com" />
+Email2: <input type="text" id="student_email2" name="student_email2" value="Innamulproject2@gmail.com" />
+Email3: <input type="text" id="student_email3" name="student_email3" value="Innamulproject3@gmail.com" />
+Address1: <input type="text" id="student_address1" name="student_address1" value="Peruyar street" />
+Address2: <input type="text" id="student_address2" name="student_address2" value="T.M.P Nagar" />
+city: <input type="text" id="student_city" name="student_city" value="Chennai" />
+country: <input type="text" id="student_country" name="student_country" value="India" />
+College: <input type="text" id="student_college" name="student_college" value="MIT" />
+College Years: <input type="text" id="student_college_year" name="student_college_year" value="3" />
+<input type="submit" id="b1"  value="click">
+
+<form name="manyUpdatedb" id="manyUpdatedb" method="POST">
+Student id: <input type="text" id="student_id" value="567567" name="student_id"  /> <br/>
+Student name: <input type="text" id="student_name" name="student_name" value="Innamul" />
+Student pass: <input type="text" id="student_pass" name="student_pass" value="InnuSec" />
+Whatsapp1: <input type="text" id="student_whatsappno1" value="7092353754" name="student_whatsappno1"  /> <br/>
+Whatsapp2: <input type="text" id="student_whatsappno2" value="7092353754" name="student_whatsappno2"  /> <br/>
+Whatsapp3: <input type="text" id="student_whatsappno3" value="7092353754" name="student_whatsappno3"  /> <br/>
+Email1: <input type="text" id="student_email1" name="student_email1" value="Innamulproject@gmail.com" />
+Email2: <input type="text" id="student_email2" name="student_email2" value="Innamulproject2@gmail.com" />
+Email3: <input type="text" id="student_email3" name="student_email3" value="Innamulproject3@gmail.com" />
+Address1: <input type="text" id="student_address1" name="student_address1" value="Peruyar street" />
+Address2: <input type="text" id="student_address2" name="student_address2" value="T.M.P Nagar" />
+city: <input type="text" id="student_city" name="student_city" value="Chennai" />
+country: <input type="text" id="student_country" name="student_country" value="India" />
+College: <input type="text" id="student_college" name="student_college" value="MIT" />
+College Years: <input type="text" id="student_college_year" name="student_college_year" value="3" />
+<input type="submit" id="b2"  value="click">
+</form>
+</body>
+</html>

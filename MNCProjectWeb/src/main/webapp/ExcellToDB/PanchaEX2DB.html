@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="http://cdnjs.cloudflare.com/ajax/libs/json2/20130526/json2.min.js"></script>
+
+	<script>
+$(document).ready(function () {
+	$("#b1").click(function (event) {
+		event.preventDefault()	
+var sid = document.getElementById("student_id").value;
+var cid = document.getElementById("course_id").value;
+var url="http://localhost:2020/MNCProjectWeb/rest/excell/readId/"+sid+"/"+cid
+//alert(url)
+
+        $.ajax(url,
+       		{
+        	    dataType: 'json', // type of response data
+        		    timeout: 500,     // timeout milliseconds
+        		  type:'get',
+        		   success: function (data,status,xhr) {  
+        		    	 
+        		     },
+        		   error: function (jqXhr, textStatus, errorMessage) { // error callback
+        		  	alert("failure....")
+        		       $('p').append('Error: ' + errorMessage);
+        		     }
+        		     
+        		    	
+        	  });
+
+});
+});
+$(document).ready(function () {
+	$("#b2").click(function (event) {
+		event.preventDefault()
+		var start_row = document.getElementById("start_row").value;
+		var end_row = document.getElementById("end_row").value;
+var url2="http://localhost:2020/MNCProjectWeb/rest/excell/readRange/"+start_row+"/"+end_row
+document.location=url2; 
+	});
+});
+$(document).ready(function () {
+	$("#b3").click(function (event) {
+		event.preventDefault()
+var url2="http://localhost:2020/MNCProjectWeb/rest/excell/readAll"
+document.location=url2; 
+	});
+});
+</script>		  
+	<p></p>
+	<form id="readById" method=" post">
+	Read Excell data by specific id and update in database:
+	<input type="text" name="StudentID" id="student_id" value="123123">
+	<input type="text" name="CourseID" id="course_id" value="23444">
+	<input type="submit" value="click" id="b1">
+	</form>
+	<form id="readXL" method=" post">
+	Read Excell data by range:
+	<input type="text" name="start_row" id="start_row" value="1">
+	<input type="text" name="end_row" id="end_row" value="5">
+	<input type="submit" value="click" id="b2">
+	</form>
+	
+	Read all Excell data:
+	<form id="readXLall" method=" post">
+	<input type="submit" value="click" id="b3">
+	</form>
+</body>
+</html>
